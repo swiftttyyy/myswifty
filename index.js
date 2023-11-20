@@ -8,8 +8,8 @@ const User =require("./models/user")
 var bodyParser = require('body-parser');
 var session = require('express-session')
 const dashboard = require("./routes/dashboard")
-const dbURL ='mongodb://localhost:27017/swift'     
-//"mongodb+srv://davidmiller4504:LTSVp7IMEBKNMcUf@cluster0.zhgo4fr.mongodb.net/?retryWrites=true&w=majority" 
+const dbURL = "mongodb+srv://davidmiller4504:LTSVp7IMEBKNMcUf@cluster0.zhgo4fr.mongodb.net/?retryWrites=true&w=majority" 
+//'mongodb://localhost:27017/swift'     
 const MongoDBStore = require("connect-mongo")
 const functions = require("firebase-functions")
 mongoose.connect( dbURL,{
