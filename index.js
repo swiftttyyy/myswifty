@@ -103,6 +103,13 @@ app.get("/news", (req,res)=>{
 app.get("/partnership", (req,res)=>{
   res.render("partnership")
 }) 
+app.get("/about_us", (req,res)=>{
+  res.render("about-us")
+}) 
+app.get("/help", (req,res)=>{
+  res.render("support")
+}) 
+
 
 app.listen(4000, ()=>{
     console.log("Listening")
