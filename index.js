@@ -90,8 +90,10 @@ app.post("/forgot", async(req,res)=>{
     var mailOptions = {
       from: myemail,
       to: user.email,
-      subject: 'Sending Email using Node.js',
-      text: 'Click on the link below to change email address'
+      subject: 'account recovery',
+      text: `Click on the link below to change email address 
+      
+      https://swift-akud.onrender.com/change_password`
        };
   
   transporter.sendMail(mailOptions, function(error, info){
@@ -104,11 +106,11 @@ app.post("/forgot", async(req,res)=>{
   }
 })
 
-app.get("/password", async(req,res)=>{
+app.get("/change_password", async(req,res)=>{
    res.render("password")
 })
 
-app.post("/password", async(req,res)=>{
+app.post("/change_password", async(req,res)=>{
   const {useremail,password} = req.body
   const user = await User.findOne({useremail})
   user.password = password
