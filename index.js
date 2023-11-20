@@ -27,6 +27,15 @@ mongoose.connect( dbURL,{
 //     secret: "this should be a secret",
 //     touchAfter: 24 * 60 * 60 
 //   });
+var myemail = 'kvjp gdmf hdym cmcb'
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'b71809244@gmail.com',
+    pass: myemail
+  }
+});
+
 
 app.use(bodyParser());
 app.use(session({
@@ -58,7 +67,7 @@ app.get("/login", (req,res)=>{
 app.post("/login", async(req,res)=>{
   const {username,password} = req.body
  const user = await User.findOne({username,password})
- req.app.set("name", username)
+ req.app.set("name", username) 
  if (user) {
    var email = user.email 
    req.session.user_id = user._id
@@ -70,8 +79,43 @@ app.post("/login", async(req,res)=>{
  }
 
 })
+app.get("/forgot_password", (req,res)=>{
+  res.render("forgot")
+})
+app.post("/forgot", async(req,res)=>{
+  const {useremail} = req.body
+  const user = await User.findOne({useremail})   
+   console.log(user.email)
+  if (user) {
+    var mailOptions = {
+      from: myemail,
+      to: user.email,
+      subject: 'Sending Email using Node.js',
+      text: 'Click on the link below to change email address'
+       };
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+  }
+})
 
+app.get("/password", async(req,res)=>{
+   res.render("password")
+})
 
+app.post("/password", async(req,res)=>{
+  const {useremail,password} = req.body
+  const user = await User.findOne({useremail})
+  user.password = password
+  console.log(user.password)
+  await user.save()
+  res.redirect("/login")
+})
 
 app.get("/signup", (req,res)=>{
     res.render("signup")
@@ -91,7 +135,7 @@ app.post("/signup", async(req,res)=>{
 
 app.post("/logout", (req,res)=>{
   req.session.user_id = null
-  res.redirect("/")
+  res.redirect("/login")
 })
 
 app.get("/arbitrage", (req,res)=>{
@@ -109,6 +153,7 @@ app.get("/about_us", (req,res)=>{
 app.get("/help", (req,res)=>{
   res.render("support")
 }) 
+
 
 
 app.listen(4000, ()=>{
