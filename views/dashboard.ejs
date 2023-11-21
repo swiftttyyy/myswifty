@@ -238,7 +238,7 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 					</script>
 				</div>
 				<div class="col-xl-9 col-lg-12">
-					Current balance					<h2 class="green mb-30">$<%= useraccount.balance  %>
+					Current balance					<h2 class="green mb-30">$<%= useraccount.deposit + useraccount.profit  %>
 				</h2>
 
 					<div class="row">
@@ -325,7 +325,7 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 				<div class="col-xl-6 text-center"> 
 
 					<b>Deposited</b>
-					<h2><%= useraccount.balance  %></h2>
+					<h2><%= useraccount.deposit  %></h2>
 				</div>
 				<div class="col-xl-6 text-right">
 					<a class="btn-fill w-100 text-center mb-3" href="/account/deposit">Replenish</a>

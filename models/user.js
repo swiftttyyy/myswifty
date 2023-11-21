@@ -13,7 +13,7 @@ const UserSchema = new mongoose.Schema(
        password:{
         type: String
        },
-       balance:{
+       deposit:{
         type: Number,
         default:  0
        },
