@@ -68,6 +68,7 @@
 	<div class="sub-page">
 		<div class="container"><div class="form-box">
 	<h1 class="text-center">Log in</h1>
+
 	
 	
 
@@ -76,14 +77,23 @@
 <input type=hidden name=follow value=''>
 <input type=hidden name=follow_id value=''>
  
-
+<script language=javascript>
+	function showpassword2() {
+  var x = document.getElementById("password2");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+	</script>
 		<label><span class="icon-envelope-shape"></span> Username</label>
 		<input type="text" placeholder="Username" name=username value='' autocomplete="off">
 
 		<label><span class="icon-lock-shape"></span> Password</label>
 		<div class="password">
-			<input type="password" name=password value=''>
-			<div class="show-password"></div>
+			<input type="password" id="password3" name=password value=''>
+			<div class="show-password" onclick="showpassword2()"></div>
 		</div>
 		
 		

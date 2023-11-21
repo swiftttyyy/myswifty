@@ -71,6 +71,24 @@
  
 
  <script language=javascript>
+	function showpassword() {
+  var x = document.getElementById("password1");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+function showpassword2() {
+  var x = document.getElementById("password2");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
  function checkform() {
   if (document.regform.fullname.value == '') {
     alert("Please enter your full name!");
@@ -156,15 +174,15 @@
 
 		<label><span class="icon-lock-shape"></span> Password*</label>
 		<div class="password">
-			<input type="password"  placeholder="Qwerty123!@#" name=password value="">
-			<div class="show-password"></div>
+			<input type="password"  id="password1" placeholder="Qwerty123!@#" name=password value="">
+			<div class="show-password" onclick="showpassword()"></div>
 		</div>
 		
 		
 		<label><span class="icon-lock-shape"></span> Retype Password*</label>
 		<div class="password">
-			<input type="password" placeholder="Qwerty123!@#" name=password2 value="">
-			<div class="show-password"></div>
+			<input type="password"  id="password2" placeholder="Qwerty123!@#" name=password2 value="">
+			<div class="show-password" onclick="showpassword2()"></div>
 		</div>
 		
 		
