@@ -2032,3 +2032,13 @@ input[name="css-tabs"]
 	border-top:0px;
 	border-bottom:1px solid #414E7B;
 }
+
+.error-message{
+     text-align: center;
+	 color: red;
+}
+
+.success-message{
+	text-align: center;
+	color: green;
+}

@@ -4,6 +4,7 @@ var nodemailer = require('nodemailer');
 const app = express()
 const path = require("path")
 const mongoose = require('mongoose');
+const flash = require("connect-flash")
 const User =require("./models/user")
 var bodyParser = require('body-parser');
 var session = require('express-session')
@@ -46,6 +47,15 @@ app.use(session({
 
 })
 }))
+app.use(flash()) 
+app.use((req,res,next)=>{
+  res.locals.error = req.flash("error")
+  next()
+})
+app.use((req,res,next)=>{
+  res.locals.success = req.flash("success")
+  next()
+})
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.raw());
@@ -74,8 +84,9 @@ app.post("/login", async(req,res)=>{
   console.log(user)
   res.redirect(`/account`)
  }
- else {
-  res.redirect("/")
+ else { 
+  req.flash("error", "incorrect details")
+  res.redirect("/login")
  }
 
 })
@@ -132,6 +143,7 @@ app.post("/signup", async(req,res)=>{
     password
   })
   await user.save()
+  req.flash("success", "signup success, you can now login")
   res.redirect("/login")
 })
 
