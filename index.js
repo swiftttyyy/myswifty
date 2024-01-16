@@ -9,7 +9,7 @@ const User =require("./models/user")
 var bodyParser = require('body-parser');
 var session = require('express-session')
 const dashboard = require("./routes/dashboard")
-const dbURL =  "mongodb+srv://David:Vestord33@cluster0.gtmisgt.mongodb.net/?retryWrites=true&w=majority"
+const dbURL =  "mongodb+srv://david:Vestord33@cluster0.nlnnzdf.mongodb.net/?retryWrites=true&w=majority"
 // "mongodb+srv://davidmiller4504:LTSVp7IMEBKNMcUf@cluster0.zhgo4fr.mongodb.net/?retryWrites=true&w=majority" 
     // 'mongodb://localhost:27017/swift'
 const MongoDBStore = require("connect-mongo")
