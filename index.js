@@ -1,5 +1,7 @@
 const express = require("express")
+const router = express.Router()
 var cron = require(`node-cron`);
+const serverless = require('serverless-http')
 var nodemailer = require('nodemailer');
 const app = express()
 const path = require("path")
@@ -13,7 +15,8 @@ const dbURL =  "mongodb+srv://david:Vestord33@cluster0.nlnnzdf.mongodb.net/?retr
 // "mongodb+srv://davidmiller4504:LTSVp7IMEBKNMcUf@cluster0.zhgo4fr.mongodb.net/?retryWrites=true&w=majority" 
     // 'mongodb://localhost:27017/swift'
 const MongoDBStore = require("connect-mongo")
-const functions = require("firebase-functions")
+const functions = require("firebase-functions");
+const ServerlessHttp = require("serverless-http");
 mongoose.connect( dbURL,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -175,5 +178,7 @@ app.listen(4000, ()=>{
     console.log("Listening")
 })
 
+app.use("/.netlify/functions/index", router)
+module.exports.handler = serverless(app)
 exports.api = functions.https.onRequest(app)
 
