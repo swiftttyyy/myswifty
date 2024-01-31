@@ -172,11 +172,13 @@ app.get("/help", (req,res)=>{
   res.render("support")
 }) 
 
+const port = "3001"
 
-
-app.listen(3001, ()=>{
-    console.log("Listening")
+app.listen(port, ()=>{
+    console.log(`listening on ${port}`)
 })
+
+
 
 app.use("/.netlify/functions/index", router)
 module.exports.handler = serverless(app)
